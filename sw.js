@@ -10,7 +10,9 @@ const CRITICAL_ASSETS = [
   '/MyLore/app.js',
   '/MyLore/script.js',
   '/MyLore/manifest.json',
-  '/MyLore/mylore.png'
+  '/MyLore/mylore.png',
+  '/MyLore/firebase.js',
+  '/MyLore/crud.js'
 ];
 
 // Ressources à mettre en cache au premier accès
