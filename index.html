@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="MyLore - Collection de Light-Novels Oneshot">
+    <meta name="theme-color" content="#1e1b4b">
+    <title>MyLore - Light-Novels</title>
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="mylore.png">
+    <link rel="apple-touch-icon" href="icon-192.png">
+    
+    <!-- PWA Manifest -->
+    <link rel="manifest" href="manifest.json">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- CSS personnalisé -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body class="bg-gradient-to-br from-indigo-950 via-purple-900 to-indigo-900 min-h-screen text-white">
+    
+    <!-- Navigation -->
+    <nav class="fixed top-0 w-full bg-black/30 backdrop-blur-lg z-50 border-b border-purple-500/20">
+        <div class="container mx-auto px-4 py-4 flex justify-between items-center">
+            <div class="flex items-center gap-3">
+                <img src="mylore.png" alt="MyLore Logo" class="h-10 w-10 object-contain">
+                <h1 class="text-3xl font-bold bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">
+                    MyLore
+                </h1>
+            </div>
+            <button id="refreshBtn" class="nav-btn" title="Actualiser le contenu">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"></path>
+                </svg>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="pt-32 pb-16 px-4">
+        <div class="container mx-auto text-center">
+            <div class="mb-8 flex justify-center">
+                <img src="mylore.png" alt="MyLore" class="h-32 w-32 object-contain animate-fade-in">
+            </div>
+            <h2 class="text-5xl md:text-7xl font-bold mb-6 animate-fade-in">
+                Bienvenue dans <span class="bg-gradient-to-r from-purple-400 via-pink-400 to-red-400 bg-clip-text text-transparent">MyLore</span>
+            </h2>
+            <p class="text-xl md:text-2xl text-purple-200 mb-8 animate-slide-up">
+                Plongez dans un univers de Light-Novels captivants
+            </p>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <main class="container mx-auto px-4 pb-20">
+        
+        <!-- Search Bar -->
+        <div class="max-w-2xl mx-auto mb-12">
+            <div class="relative">
+                <input 
+                    type="text" 
+                    id="searchInput"
+                    placeholder="Rechercher un light-novel..."
+                    class="w-full px-6 py-4 pl-14 rounded-full bg-white/10 backdrop-blur-lg border border-purple-500/30 focus:border-purple-400 focus:outline-none focus:ring-2 focus:ring-purple-400/50 transition-all"
+                >
+                <svg class="w-6 h-6 absolute left-5 top-1/2 transform -translate-y-1/2 text-purple-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+                </svg>
+            </div>
+        </div>
+
+        <!-- Filter Buttons -->
+        <div class="flex flex-wrap justify-center gap-4 mb-12">
+            <button class="filter-btn active" data-filter="all">
+                Tous
+            </button>
+            <button class="filter-btn" data-filter="recent">
+                Récents
+            </button>
+            <button class="filter-btn" data-filter="popular">
+                Populaires
+            </button>
+        </div>
+
+        <!-- Loading State -->
+        <div id="loadingState" class="text-center py-20">
+            <div class="inline-block animate-spin rounded-full h-16 w-16 border-t-4 border-b-4 border-purple-400"></div>
+            <p class="mt-4 text-purple-300">Chargement des œuvres...</p>
+        </div>
+
+        <!-- Novels Grid -->
+        <div id="novelsGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <!-- Les novels seront chargés ici dynamiquement -->
+        </div>
+
+        <!-- Empty State -->
+        <div id="emptyState" class="hidden text-center py-20">
+            <svg class="w-24 h-24 mx-auto mb-4 text-purple-400/50" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path>
+            </svg>
+            <p class="text-purple-300 text-xl">Aucune œuvre disponible pour le moment</p>
+        </div>
+
+        <!-- Offline Banner -->
+        <div id="offlineBanner" class="hidden fixed bottom-4 left-1/2 transform -translate-x-1/2 bg-orange-500/90 backdrop-blur-lg text-white px-6 py-3 rounded-full shadow-lg z-50">
+            <div class="flex items-center gap-2">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18.364 5.636a9 9 0 010 12.728m0 0l-2.829-2.829m2.829 2.829L21 21M15.536 8.464a5 5 0 010 7.072m0 0l-2.829-2.829m-4.243 2.829a4.978 4.978 0 01-1.414-2.83m-1.414 5.658a9 9 0 01-2.167-9.238m7.824 2.167a1 1 0 111.414 1.414m-1.414-1.414L3 3m8.293 8.293l1.414 1.414"></path>
+                </svg>
+                <span class="font-semibold">Mode hors ligne - Contenu en cache</span>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- Modal pour lecture -->
+    <div id="readModal" class="hidden fixed inset-0 bg-black/80 backdrop-blur-sm z-50 overflow-y-auto">
+        <div class="min-h-screen px-4 py-8">
+            <div class="max-w-4xl mx-auto bg-gradient-to-br from-indigo-950 to-purple-900 rounded-2xl border border-purple-500/30 overflow-hidden">
+                <!-- Header -->
+                <div class="sticky top-0 bg-black/50 backdrop-blur-lg p-6 border-b border-purple-500/30">
+                    <div class="flex justify-between items-start">
+                        <div class="flex-1">
+                            <h3 id="modalTitle" class="text-3xl font-bold mb-2"></h3>
+                            <p id="modalMeta" class="text-purple-300 text-sm"></p>
+                        </div>
+                        <button id="closeModal" class="text-purple-300 hover:text-white transition-colors ml-4">
+                            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Content -->
+                <div class="p-8">
+                    <div id="modalDescription" class="text-purple-200 mb-6 text-lg italic"></div>
+                    <div id="modalContent" class="prose prose-invert prose-lg max-w-none whitespace-pre-wrap leading-relaxed"></div>
+                </div>
+                
+                <!-- Footer -->
+                <div class="bg-black/30 backdrop-blur-lg p-6 border-t border-purple-500/30">
+                    <div class="flex justify-between items-center">
+                        <button id="bookmarkBtn" class="flex items-center gap-2 text-purple-300 hover:text-purple-100 transition-colors">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 5a2 2 0 012-2h10a2 2 0 012 2v16l-7-3.5L5 21V5z"></path>
+                            </svg>
+                            <span>Enregistrer</span>
+                        </button>
+                        <button id="shareBtn" class="flex items-center gap-2 text-purple-300 hover:text-purple-100 transition-colors">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z"></path>
+                            </svg>
+                            <span>Partager</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="script.js"></script>
+    <script type="module" src="app.js"></script>
+</body>
+</html>

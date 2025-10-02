@@ -1,0 +1,300 @@
+/* Animations personnalisées */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes shimmer {
+    0% {
+        background-position: -1000px 0;
+    }
+    100% {
+        background-position: 1000px 0;
+    }
+}
+
+.animate-fade-in {
+    animation: fadeIn 1s ease-out;
+}
+
+.animate-slide-up {
+    animation: slideUp 1s ease-out 0.3s both;
+}
+
+/* Boutons de filtre */
+.filter-btn {
+    padding: 0.75rem 1.5rem;
+    border-radius: 9999px;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(168, 85, 247, 0.3);
+    transition: all 0.3s ease;
+    color: rgba(216, 180, 254, 1);
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.filter-btn:hover {
+    background: rgba(168, 85, 247, 0.2);
+    border-color: rgba(168, 85, 247, 0.5);
+    transform: translateY(-2px);
+}
+
+.filter-btn.active {
+    background: linear-gradient(to right, rgba(168, 85, 247, 0.5), rgba(236, 72, 153, 0.5));
+    border-color: rgba(168, 85, 247, 0.8);
+    color: white;
+}
+
+/* Boutons de navigation */
+.nav-btn {
+    padding: 0.75rem;
+    border-radius: 0.75rem;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(168, 85, 247, 0.3);
+    transition: all 0.3s ease;
+    color: rgba(216, 180, 254, 1);
+}
+
+.nav-btn:hover {
+    background: rgba(168, 85, 247, 0.3);
+    border-color: rgba(168, 85, 247, 0.6);
+    transform: translateY(-2px);
+    color: white;
+}
+
+.nav-btn.active {
+    background: linear-gradient(to right, rgba(168, 85, 247, 0.5), rgba(236, 72, 153, 0.5));
+    border-color: rgba(168, 85, 247, 0.8);
+    color: white;
+}
+
+/* Cartes de novels */
+.novel-card {
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(168, 85, 247, 0.2);
+    border-radius: 1.5rem;
+    overflow: hidden;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    animation: fadeIn 0.6s ease-out;
+}
+
+.novel-card:hover {
+    transform: translateY(-8px) scale(1.02);
+    border-color: rgba(168, 85, 247, 0.6);
+    box-shadow: 0 20px 60px rgba(168, 85, 247, 0.4);
+}
+
+.novel-card img {
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
+    transition: transform 0.4s ease;
+}
+
+.novel-card:hover img {
+    transform: scale(1.1);
+}
+
+.novel-card-content {
+    padding: 1.5rem;
+}
+
+.novel-card h3 {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-bottom: 0.75rem;
+    background: linear-gradient(to right, #c084fc, #f0abfc);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.novel-card p {
+    color: rgba(216, 180, 254, 0.8);
+    margin-bottom: 1rem;
+    line-height: 1.6;
+}
+
+/* Boutons */
+.btn-primary {
+    background: linear-gradient(to right, #a855f7, #ec4899);
+    color: white;
+    padding: 0.75rem 1.5rem;
+    border-radius: 0.75rem;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    border: none;
+    cursor: pointer;
+}
+
+.btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 30px rgba(168, 85, 247, 0.4);
+}
+
+.btn-secondary {
+    background: rgba(255, 255, 255, 0.1);
+    color: rgba(216, 180, 254, 1);
+    padding: 0.75rem 1.5rem;
+    border-radius: 0.75rem;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    border: 1px solid rgba(168, 85, 247, 0.3);
+    cursor: pointer;
+}
+
+.btn-secondary:hover {
+    background: rgba(255, 255, 255, 0.2);
+    border-color: rgba(168, 85, 247, 0.6);
+}
+
+.btn-danger {
+    background: linear-gradient(to right, #ef4444, #dc2626);
+    color: white;
+    padding: 0.5rem 1rem;
+    border-radius: 0.5rem;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    border: none;
+    cursor: pointer;
+    font-size: 0.875rem;
+}
+
+.btn-danger:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(239, 68, 68, 0.4);
+}
+
+.btn-secondary:hover {
+    background: rgba(255, 255, 255, 0.2);
+    border-color: rgba(168, 85, 247, 0.6);
+}
+
+/* Offline banner animation */
+@keyframes slideInFromBottom {
+    from {
+        transform: translate(-50%, 100px);
+        opacity: 0;
+    }
+    to {
+        transform: translate(-50%, 0);
+        opacity: 1;
+    }
+}
+
+#offlineBanner:not(.hidden) {
+    animation: slideInFromBottom 0.5s ease-out;
+}
+
+/* Boutons d'action dans le modal */
+#bookmarkBtn svg,
+#shareBtn svg {
+    transition: transform 0.3s ease;
+}
+
+#bookmarkBtn:hover svg,
+#shareBtn:hover svg {
+    transform: scale(1.2);
+}
+
+/* Admin novel item */
+.admin-novel-item {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(168, 85, 247, 0.2);
+    border-radius: 1rem;
+    padding: 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: all 0.3s ease;
+}
+
+.admin-novel-item:hover {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: rgba(168, 85, 247, 0.4);
+}
+
+/* Loading shimmer effect */
+.loading-shimmer {
+    background: linear-gradient(
+        90deg,
+        rgba(168, 85, 247, 0.1) 0%,
+        rgba(168, 85, 247, 0.3) 50%,
+        rgba(168, 85, 247, 0.1) 100%
+    );
+    background-size: 1000px 100%;
+    animation: shimmer 2s infinite;
+}
+
+/* Scrollbar personnalisé */
+::-webkit-scrollbar {
+    width: 12px;
+}
+
+::-webkit-scrollbar-track {
+    background: rgba(30, 27, 75, 0.5);
+}
+
+::-webkit-scrollbar-thumb {
+    background: linear-gradient(to bottom, #a855f7, #ec4899);
+    border-radius: 6px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(to bottom, #9333ea, #db2777);
+}
+
+/* Inputs focus states */
+input:focus,
+textarea:focus {
+    outline: none;
+}
+
+/* Modal prose styling */
+.prose-invert {
+    color: rgba(216, 180, 254, 0.9);
+}
+
+.prose-invert h1,
+.prose-invert h2,
+.prose-invert h3,
+.prose-invert h4 {
+    color: rgba(216, 180, 254, 1);
+    font-weight: bold;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .novel-card h3 {
+        font-size: 1.25rem;
+    }
+    
+    .novel-card img {
+        height: 200px;
+    }
+}
+
+/* Smooth transitions */
+* {
+    transition-property: background-color, border-color, color, fill, stroke, opacity, box-shadow, transform;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    transition-duration: 150ms;
+}
